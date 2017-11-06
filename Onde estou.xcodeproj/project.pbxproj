@@ -22,6 +22,7 @@
 		621623FC1FB0DE01001ADEA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621623FF1FB0DE01001ADEA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		621624011FB0DE01001ADEA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		621624081FB0DE2D001ADEA6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 			children = (
 				621623F41FB0DE01001ADEA6 /* Onde estou */,
 				621623F31FB0DE01001ADEA6 /* Products */,
+				621624071FB0DE2D001ADEA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +64,14 @@
 				621624011FB0DE01001ADEA6 /* Info.plist */,
 			);
 			path = "Onde estou";
+			sourceTree = "<group>";
+		};
+		621624071FB0DE2D001ADEA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				621624081FB0DE2D001ADEA6 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
