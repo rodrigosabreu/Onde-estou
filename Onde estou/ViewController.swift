@@ -43,9 +43,98 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         latitudeLabel.text = String(describing: latitude)
         longetudeLabel.text = String(describing: longetude)
-        velocidadeLabel.text = String(describing: localizacaoUsuario!.speed)
+        
+        if (localizacaoUsuario!.speed > 0) {
+            velocidadeLabel.text = String(describing: localizacaoUsuario!.speed)
+        }
+        
+        //exibir o local no mapa (rastrear)
+        let deltaLat:CLLocationDegrees = 0.01
+        let deltaLon:CLLocationDegrees = 0.01
+        
+        let localizacao: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longetude)
+        let areaExibicao: MKCoordinateSpan = MKCoordinateSpanMake(deltaLat, deltaLon)
+        let regiao: MKCoordinateRegion = MKCoordinateRegionMake(localizacao, areaExibicao)
+        mapa.setRegion(regiao, animated: true)
         
         
+        //exibir endereço conforme lat e lon
+        CLGeocoder().reverseGeocodeLocation(localizacaoUsuario!) { (detalhesLocal, erro) in
+            
+            if erro == nil{
+                
+                if let dadosLocal = detalhesLocal?.first{
+                
+                    var thoroughfare = ""
+                    if dadosLocal.thoroughfare != nil{
+                        thoroughfare = dadosLocal.thoroughfare!
+                    }
+                    
+                    var subThoroughfare = ""
+                    if dadosLocal.subThoroughfare != nil{
+                        subThoroughfare = dadosLocal.subThoroughfare!
+                    }
+                    
+                    var locality = ""
+                    if dadosLocal.locality != nil{
+                        locality = dadosLocal.locality!
+                    }
+                    
+                    var subLocality = ""
+                    if dadosLocal.subLocality != nil{
+                        subLocality = dadosLocal.subLocality!
+                    }
+                    
+                    var postalCode = ""
+                    if dadosLocal.postalCode != nil{
+                        postalCode = dadosLocal.postalCode!
+                    }
+                    
+                    var country = ""
+                    if dadosLocal.country != nil{
+                        country = dadosLocal.country!
+                    }
+                    
+                    var administrativeArea = ""
+                    if dadosLocal.administrativeArea != nil{
+                        administrativeArea = dadosLocal.administrativeArea!
+                    }
+                    
+                    var subAdministrativeArea = ""
+                    if dadosLocal.subAdministrativeArea != nil{
+                        subAdministrativeArea = dadosLocal.subAdministrativeArea!
+                    }
+                    
+                    /*print(
+                        "\n /thoroughfare:" + thoroughfare +
+                        "\n /subThoroughfare:" + subThoroughfare +
+                        "\n /locality:" + locality +
+                        "\n /subLocality:" + subLocality +
+                        "\n /postalCode:" + postalCode +
+                        "\n /country:" + country +
+                        "\n /administrativeArea:" + administrativeArea +
+                        "\n /subAdministrativeArea:" + subAdministrativeArea
+                    )*/
+                    
+                    let endereco = thoroughfare + ", "
+                                    + subThoroughfare + " - "
+                                    + subLocality + " - "
+                                    + locality + " / "
+                                    + administrativeArea + " - "
+                                    + country
+                    
+                    
+                    self.enderecoLabel.text = endereco
+                    
+                    
+                    
+                }
+                
+            }else{
+                print(erro!)
+            }
+            
+        }
         
     }
     
