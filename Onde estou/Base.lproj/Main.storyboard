@@ -96,7 +96,7 @@
                                     <constraint firstAttribute="height" constant="201" id="KHf-bU-vGO"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Drg-Av-Ql7">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Drg-Av-Ql7">
                                 <rect key="frame" x="0.0" y="243" width="375" height="424"/>
                             </mapView>
                         </subviews>
@@ -116,7 +116,11 @@
                         <viewLayoutGuide key="safeArea" id="LlN-Jn-iYV"/>
                     </view>
                     <connections>
+                        <outlet property="enderecoLabel" destination="MfK-ta-vJK" id="Dbi-cm-zVe"/>
+                        <outlet property="latitudeLabel" destination="LME-EJ-dhw" id="BQ6-rH-43c"/>
+                        <outlet property="longetudeLabel" destination="3Zv-hE-LwY" id="7NF-88-KSB"/>
                         <outlet property="mapa" destination="Drg-Av-Ql7" id="8mx-wG-ruT"/>
+                        <outlet property="velocidadeLabel" destination="T4G-yD-iCA" id="Er3-FY-BUT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbl-2F-wMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

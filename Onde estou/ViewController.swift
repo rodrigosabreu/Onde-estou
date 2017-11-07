@@ -14,6 +14,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet var mapa: MKMapView!
     var gerenciadorLocalizacao = CLLocationManager()
     
+    @IBOutlet var velocidadeLabel: UILabel!
+    @IBOutlet var latitudeLabel: UILabel!
+    @IBOutlet var longetudeLabel: UILabel!
+    @IBOutlet var enderecoLabel: UILabel!
+       
     override var prefersStatusBarHidden: Bool{
         return true
     }
@@ -28,7 +33,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
 
+    //exibir dados de localização do usuario
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let localizacaoUsuario = locations.last
+        
+        let latitude = localizacaoUsuario!.coordinate.latitude
+        let longetude = localizacaoUsuario!.coordinate.longitude
+        
+        latitudeLabel.text = String(describing: latitude)
+        longetudeLabel.text = String(describing: longetude)
+        velocidadeLabel.text = String(describing: localizacaoUsuario!.speed)
+        
+        
+        
+    }
     
+    
+    //Solicitação de permissão de localização
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if status != .authorizedWhenInUse{
